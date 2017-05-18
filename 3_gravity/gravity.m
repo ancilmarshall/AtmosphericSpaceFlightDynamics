@@ -1,4 +1,17 @@
 function [gc,gnorth] = gravity(r,lat)
+% GRAVITY Calculate earth's gravitational nonspherical vector as function
+% of position in space
+%   [gc,gnorth] = gravity(r,lat)
+%  
+%   Inputs: 
+%     r   - distance from center of the earth (m)
+%     lat - latitude (rad)
+%   Outputs: Gravity compenents in NED coordinate frame, where
+%     gc     - component in the N direction
+%     gnorth - component in the D direction
+% 
+%   Uses Jeffery's constants J2, J3, J4 
+%
 % (c) 2006 Ashish Tewari
 
 phi = pi/2-lat;

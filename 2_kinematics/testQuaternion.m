@@ -25,6 +25,14 @@ C = [1  0 0;
      0 -s c];
 end
 
+function C = dcm2(x)
+c = cos(x);
+s = sin(x);
+C = [c 0 -s;
+     0 1  0;
+     s 0  c];
+end
+
 function qnew = toStd(q)
     qnew = [q(4) q(1:3)];
 end

@@ -1,11 +1,10 @@
 function xdot = eomRotation(t,x,massModel,forceModel)
-%SPACEROTATION Program for torque-free rotational dynamics and Euler 3-1-3
-%kinematics of a rigid body spacecraft
+%EOMROTATION Euler's equation of motion with with inertia and force model
+%input. Quaternions is the kinematic differential equations
 %
 % x(1)= omega_x, x(2)=omega_y, x(3) = omega_z (angular velocity in rad/s)
-% x(4)=psi, x(5)=theta, x(6) = phi (euler angles in rad)
-%
-% (c) 2006 Ashish Tewari
+% x(4)= q1, x(5)=q2, x(6)=q3, x(7)=q4, where q4 is the scalar part of the
+% quaternions
 
 J = massModel;
 M = forceModel;

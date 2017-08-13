@@ -13,19 +13,15 @@ ellipse = Ellipse(OrbConstants().earth);
 velA = velC-deltaV;
 rA = circle.consts.radius + h;
 
-% once r, v, fpa known, we can define the constants
-momentum = ellipse.momentumFromRVFpa(rA,velA,0);
-ellipse = ellipse.energyFromRV(rA,velA); 
-energy = ellipse.energy;
-p = ellipse.pFromH(momentum);
-a = ellipse.aFromEnergy(energy);
-e = ellipse.eFromPA(p,a);
+% once r, v, phi known, we can define the constants
+ellipse.setRVPhi(rA,velA,0);
 
-rP = 2*a - rA;
-velP = ellipse.velocityFromREnergy(rP,energy);
+rP = 2*ellipse.a - rA;
+velP = ellipse.velocityFromREnergy(rP,ellipse.energy);
 
-% change r, solve for v, fpa, 
+% change r, solve for v, phi, 
 r = OrbConstants().earth.radius+100;
-v = ellipse.velocityFromREnergy(r,energy);
-fpa = ellipse.fpaFromHRV(momentum,r,v);
+v = ellipse.velocityFromREnergy(r,ellipse.energy);
+phi = ellipse.fpaFromHRV(ellipse.momentum,r,v);
 
+ellipse.setRVPhi(r,v,-phi);

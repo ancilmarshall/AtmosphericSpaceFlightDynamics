@@ -15,26 +15,23 @@ classdef Dynamic < handle
          self.value = value;
       end
       
-      % TODO: figure out why I cannot access listener directory but have to
-      % go through this fireListener function which does the same thing
-      % anyway. 
+      % TODO: figure out why I need this MSCUP ignore
       function set.value(self,value)
-         self.value = value;
-         self.fireListener();
-      end
-      
-      function fireListener(self)
-         if isempty(self.listener)
+         self.value = value;         
+         if isempty(self.listener) %#ok<MCSUP>
             return
          end
-         
-         self.listener(self.value)
+         self.listener(self.value) %#ok<MCSUP>
       end
       
       function bind(self,listener)
          self.listener = listener;
       end
       
+      function bindAndFire(self,listener)
+         self.listener = listener;
+         listener(self.value);
+      end
       
    end
    

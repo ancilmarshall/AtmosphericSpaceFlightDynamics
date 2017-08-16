@@ -6,7 +6,7 @@ classdef CVViewModel < handle
    %possible
    
    properties
-      velocityLabel = Dynamic('Empty');
+      velocityLabelSignal = Dynamic('Empty');
       alt;
    end
    
@@ -19,29 +19,16 @@ classdef CVViewModel < handle
       %constructor
       function self = CVViewModel()
          self.model = CVModel();
-         self.model.circle.v.bind(@self.updateVelocityLabelText);
+         self.model.circle.vSignal > @self.updateVelocityLabelText;
       end
       
       function updateVelocityLabelText(self,vel)
-         self.velocityLabel.value = ...
+         self.velocityLabelSignal.value = ...
             sprintf('Circular velocity is %5.3f km/s',vel);
       end
       
       function set.alt(self,value)
          self.model.circle.alt = value; %#ok<MCSUP>
-         
-         % TODO: also need to bind to changes in the model to be represented
-         % in the view model
-         
-         %          if isempty(self.model.circle.v)
-         %             self.velocityLabel.value = ...
-         %                'Circular velocity is n/a km/s';
-         %             return
-         %          end
-         %
-         %          self.velocityLabel.value = ...
-         %             sprintf('Circular velocity is %5.3f km/s',self.model.circle.v);
-         %
       end
       
       

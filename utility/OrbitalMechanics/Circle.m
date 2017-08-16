@@ -1,6 +1,6 @@
 classdef Circle < ConicInterface
  
-    properties
+    properties 
        alt;
     end
     
@@ -9,7 +9,6 @@ classdef Circle < ConicInterface
         % constructor
         function obj = Circle(consts)
             obj.consts=consts;
-            obj.v = Dynamic(0);
         end
         
         function set.alt(self,value)
@@ -25,15 +24,13 @@ classdef Circle < ConicInterface
            self.calcPeriod();
            self.calcMeanMotion();
         end
-        
-
-        
+                
         function calcMomentum(self)
            self.momentum = self.r * self.v; 
         end
         
         function calcEnergy(self)
-            self.energy = (self.v.value^2)/2 - self.consts.mu/self.r;
+            self.energy = (self.v^2)/2 - self.consts.mu/self.r;
         end
         
         function calcPeriod(self)
@@ -45,9 +42,8 @@ classdef Circle < ConicInterface
         end
         
         function calcVelocity(self)
-            self.v.value = sqrt(self.consts.mu/self.r);
+            self.v = sqrt(self.consts.mu/self.r);
         end
-        
     end
     
 end

@@ -33,6 +33,18 @@ classdef Dynamic < handle
          listener(self.value);
       end
       
+      function gt(self,obj)
+         self.listener = obj;
+      end
+      
+      function obj = get(self)
+         obj = self.value;
+      end
+      
+      function obj = eval(self)
+         obj = self.value;
+      end
+      
    end
    
 end
